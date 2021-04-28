@@ -46,26 +46,40 @@ public class PlayerMove : MonoBehaviour
 
         //-90에서 90까지의 y축좌표기준 회전일때는 정상적인데 그 반대일때는 거꾸로 애니메이션이 작동한다.
         //그래서 y좌표기준이 반대일때를 지정해서 넣었더니 그래도 안 된다... 왜 그럴까..
-        
-         if (dir.z > Vector3.zero.z)
-         {
-             if(transform.rotation.y <=90 && transform.rotation.y >= -90)
-             ChangeState(State.Run);
-             else ChangeState(State.Back);
+
+        if(v>0)
+        {
+            ChangeState(State.Run);
         }
-         else if (dir.z < Vector3.zero.z)
-         {
-            if (transform.rotation.y <= 90 && transform.rotation.y >= -90)
-            {
-                ChangeState(State.Back);
-                Debug.Log("dfasd");
-            }
-            else ChangeState(State.Run); 
+        else if(v<0)
+        {
+            ChangeState(State.Back);
         }
-         else
-         {
-             ChangeState(State.Idle);
-         }
+        else if(v==0)
+        {
+            ChangeState(State.Idle);
+        }
+        // if (dir.z > Vector3.zero.z)
+        // {
+        //     if(transform.rotation.y <=90 && transform.rotation.y >= -90)
+        //        ChangeState(State.Run);
+        //     else 
+        //        ChangeState(State.Back);
+        // }
+        // else if (dir.z < Vector3.zero.z)
+        // {
+        //    if (transform.rotation.y <= 90 && transform.rotation.y >= -90)
+        //    {
+        //        ChangeState(State.Back);
+        //        Debug.Log("dfasd");
+        //    }
+        //    else 
+        //        ChangeState(State.Run); 
+        //}
+        // else
+        // {
+        //     ChangeState(State.Idle);
+        // }
         
 
         if (cc.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
