@@ -58,29 +58,7 @@ public class PlayerMove : MonoBehaviour
         else if(v==0)
         {
             ChangeState(State.Idle);
-        }
-        // if (dir.z > Vector3.zero.z)
-        // {
-        //     if(transform.rotation.y <=90 && transform.rotation.y >= -90)
-        //        ChangeState(State.Run);
-        //     else 
-        //        ChangeState(State.Back);
-        // }
-        // else if (dir.z < Vector3.zero.z)
-        // {
-        //    if (transform.rotation.y <= 90 && transform.rotation.y >= -90)
-        //    {
-        //        ChangeState(State.Back);
-        //        Debug.Log("dfasd");
-        //    }
-        //    else 
-        //        ChangeState(State.Run); 
-        //}
-        // else
-        // {
-        //     ChangeState(State.Idle);
-        // }
-        
+        }   
 
         if (cc.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
         {

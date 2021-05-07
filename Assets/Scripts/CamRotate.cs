@@ -6,6 +6,7 @@ public class CamRotate : MonoBehaviour
 {
     public float m_speed = 100f; //카메라를 돌릴때의 속도
     public Transform playerBody; //카메라가 돌때 돌릴 플레이어의 몸의 변화를 위한 변수
+    public Transform m_viewPoint;//뷰포인트
     float xRotation = 0f; //
     //float mX;
     //float mY;
@@ -13,6 +14,7 @@ public class CamRotate : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;//마우스를 잠근다
+        transform.position = m_viewPoint.transform.position + m_viewPoint.transform.forward * -1.8f;
     }
 
     // Update is called once per frame
