@@ -36,29 +36,40 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    void LateUpdate()
+    {
+        //ForSeop camera = Camera.main.GetComponent<ForSeop>();
+        //Vector3 forward = camera.transform.forward;
+        //forward.y = 0f;
+        //transform.LookAt(transform.position + forward * 2f);
+
         float h = Input.GetAxis("Horizontal"); //사용자 입력처리
         float v = Input.GetAxis("Vertical");
 
+
         Vector3 dir = new Vector3(h, 0, v); //움직이는 것이 y축이 아니라 x,z축만을 이동한다.
         dir.Normalize();//정규화
-
-        dir = Camera.main.transform.TransformDirection(dir); //내가 바라보는 방향으로 (카메라의 방향으로)이동하고 싶다.
+        
+        //dir = Camera.main.transform.TransformDirection(dir); //내가 바라보는 방향으로 (카메라의 방향으로)이동하고 싶다.
 
         //-90에서 90까지의 y축좌표기준 회전일때는 정상적인데 그 반대일때는 거꾸로 애니메이션이 작동한다.
         //그래서 y좌표기준이 반대일때를 지정해서 넣었더니 그래도 안 된다... 왜 그럴까..
 
-        if(v>0)
+        if (v > 0)
         {
             ChangeState(State.Run);
         }
-        else if(v<0)
+        else if (v < 0)
         {
             ChangeState(State.Back);
         }
-        else if(v==0)
+        else if (v == 0)
         {
             ChangeState(State.Idle);
-        }   
+        }
 
         if (cc.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
         {
@@ -68,22 +79,22 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetButtonDown("Jump")) // 만약 점프키(space bar)누르면
         {
-            
-            if (jumpCount==0 && cc.collisionFlags != CollisionFlags.Below) //만약 점프키카운트가 0인 동시에 player가 바닥에 닿지 않는다면
+
+            if (jumpCount == 0 && cc.collisionFlags != CollisionFlags.Below) //만약 점프키카운트가 0인 동시에 player가 바닥에 닿지 않는다면
             {
                 return;
             }
-            else if (jumpCount< maxJumpCount) //그렇지 않고 만약 점프카운트가 최대횟수보다 작다면
+            else if (jumpCount < maxJumpCount) //그렇지 않고 만약 점프카운트가 최대횟수보다 작다면
             {
                 yVelocity = jumpPower;//중력 = 점프파워
                 jumpCount++; // 점프카운트를 1증가
             }
         }
-        
+
         yVelocity += gravity * Time.deltaTime; // v=v0+at
         dir.y = yVelocity;//y방향이 없었는데, y에 중력을 적용함
-        // transform.position += dir * playerMovespeed * Time.deltaTime;//p=p0*vt
-   
+                          // transform.position += dir * playerMovespeed * Time.deltaTime;//p=p0*vt
+
         cc.Move(dir * playerMovespeed * Time.deltaTime);
     }
 
