@@ -68,25 +68,25 @@ public class CharacterWithController : MonoBehaviour
                 break;
         }
 
-        if (cc.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
-        {
-            jumpCount = 0; // 점프카운트를 0으로
-            yVelocity = 0; //중력을 0으로
-        }
-
-        if (Input.GetButtonDown("Jump")) // 만약 점프키(space bar)누르면
-        {
-
-            if (jumpCount == 0 && cc.collisionFlags != CollisionFlags.Below) //만약 점프키카운트가 0인 동시에 player가 바닥에 닿지 않는다면
-            {
-                return;
-            }
-            else if (jumpCount < maxJumpCount) //그렇지 않고 만약 점프카운트가 최대횟수보다 작다면
-            {
-                yVelocity = jumpPower;//중력 = 점프파워
-                jumpCount++; // 점프카운트를 1증가
-            }
-        }
+       // if (cc.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
+       // {
+       //     jumpCount = 0; // 점프카운트를 0으로
+       //     yVelocity = 0; //중력을 0으로
+       // }
+       //
+       // if (Input.GetButtonDown("Jump")) // 만약 점프키(space bar)누르면
+       // {
+       //
+       //     if (jumpCount == 0 && cc.collisionFlags != CollisionFlags.Below) //만약 점프키카운트가 0인 동시에 player가 바닥에 닿지 않는다면
+       //     {
+       //         return;
+       //     }
+       //     else if (jumpCount < maxJumpCount) //그렇지 않고 만약 점프카운트가 최대횟수보다 작다면
+       //     {
+       //         yVelocity = jumpPower;//중력 = 점프파워
+       //         jumpCount++; // 점프카운트를 1증가
+       //     }
+       // }
 
         //yVelocity += gravity * Time.deltaTime; // v=v0+at
         //dir.y = yVelocity;//y방향이 없었는데, y에 중력을 적용함

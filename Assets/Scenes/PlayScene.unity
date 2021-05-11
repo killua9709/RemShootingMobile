@@ -711,6 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cameraRotate: {fileID: 963194231}
   m_character: {fileID: 1215302321}
+  m_speed: 7
 --- !u!4 &749428131
 Transform:
   m_ObjectHideFlags: 0
@@ -940,7 +941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_target: {fileID: 1097506164}
-  m_distance: 2
+  m_distance: 2.3
 --- !u!1 &977238610
 GameObject:
   m_ObjectHideFlags: 0

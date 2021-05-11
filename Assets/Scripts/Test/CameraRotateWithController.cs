@@ -15,7 +15,7 @@ public class CameraRotateWithController : MonoBehaviour
     public void AddPitchAndYaw(float pitch, float yaw)
     {
         m_pitch += pitch;                   //종축(pitch)을 증가시킨다
-        m_pitch = Mathf.Clamp(m_pitch, -70f, 70f);//위아래 범위제한 lookat함수가 외적으로 나오는 거라서 90도가 되면 010으로 된대
+        m_pitch = Mathf.Clamp(m_pitch, -45f, 60f);//위아래 범위제한 lookat함수가 외적으로 나오는 거라서 90도가 되면 010으로 된대
         m_yaw += yaw;                       //수직축(yaw)을 증가시킨다.
         UpdateCameraByProperty();           //
     }
