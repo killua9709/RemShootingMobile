@@ -25,8 +25,7 @@ public class InputController : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y");
         float mouseX = Input.GetAxis("Mouse X");
 
-        m_cameraRotate.AddPitchAndYaw(mouseY * 180f * Time.deltaTime,
-            mouseX * 180f * Time.deltaTime);
+        m_cameraRotate.AddPitchAndYaw(mouseY * 180f * Time.deltaTime, mouseX * 180f * Time.deltaTime);
 
         m_character.SetYawAngle(m_cameraRotate.transform.eulerAngles.y);
     }
@@ -37,8 +36,14 @@ public class InputController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
 
         Vector3 dir = new Vector3(horizontal, 0, vertical); //움직이는 것이 y축이 아니라 x,z축만을 이동한다.
+
+        if (vertical == 0)
+            m_character.SetState(0);
+        else if (vertical < 0)
+            m_character.SetState(1);
+        else if (vertical > 0)
+            m_character.SetState(2);
+
         dir.Normalize();//정규화
-
-
     }
 }

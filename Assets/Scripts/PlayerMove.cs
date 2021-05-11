@@ -41,11 +41,6 @@ public class PlayerMove : MonoBehaviour
 
     void LateUpdate()
     {
-        //ForSeop camera = Camera.main.GetComponent<ForSeop>();
-        //Vector3 forward = camera.transform.forward;
-        //forward.y = 0f;
-        //transform.LookAt(transform.position + forward * 2f);
-
         float h = Input.GetAxis("Horizontal"); //사용자 입력처리
         float v = Input.GetAxis("Vertical");
 

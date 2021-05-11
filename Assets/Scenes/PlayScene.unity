@@ -854,8 +854,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
@@ -929,37 +927,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de300eb762863c4a873685a0281d79b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBody: {fileID: 1215302319}
-  m_viewPoint: {fileID: 1097506164}
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 808512820d94f534580f4d039c6bbbc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_target: {fileID: 1097506164}
-  m_distance: 2
-  m_sensitiveX: 4
-  m_sensitiveY: 1
-  playerBody: {fileID: 1215302319}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,7 +1331,7 @@ CharacterController:
   m_GameObject: {fileID: 1215302316}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Height: 0.16
   m_Radius: 0.02
@@ -1373,23 +1340,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.08, z: 0}
---- !u!114 &1215302318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215302316}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178a6ea4addd85f49a44352709a399cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovespeed: 7
-  gravity: -9.8
-  jumpPower: 4
-  maxJumpCount: 2
-  m_state: 0
 --- !u!4 &1215302319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec1109020a11bc441b9107868aa130e9,
@@ -1408,6 +1358,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea3004b751bad34a9450fb08de6ac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovespeed: 5
+  gravity: -20
+  jumpPower: 5
+  maxJumpCount: 2
+  m_state: 0
 --- !u!1001 &1257037527
 PrefabInstance:
   m_ObjectHideFlags: 0
