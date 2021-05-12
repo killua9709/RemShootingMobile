@@ -20,8 +20,7 @@ public class CharacterWithController : MonoBehaviour
         Back = 2,
         Left = 3,
         Right = 4,
-        LeftRun = 5,
-        RightRun = 6
+        Jump = 5
     }
 
     CharacterController cc;//character controller이용
@@ -50,6 +49,10 @@ public class CharacterWithController : MonoBehaviour
             case 4:
                 ChangeState(State.Right);
                 break;
+            case 5:
+                ChangeState(State.Jump);
+                break;
+
         }
     }
 
