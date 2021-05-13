@@ -9,7 +9,7 @@ public class CharacterWithController : MonoBehaviour
     [SerializeField] State m_state = State.Idle;
     Animator m_animator;
 
-    int m_statenum = 0;
+    [SerializeField]float m_speed = 5f;
 
     //[Header(("State"))
 
@@ -23,37 +23,16 @@ public class CharacterWithController : MonoBehaviour
         Jump = 5
     }
 
-    CharacterController cc;//character controller이용
+    CharacterController m_characterController;//character controller이용
     void Start()
     {
         m_animator = GetComponent<Animator>();
-        cc = gameObject.GetComponent<CharacterController>(); //나의 컴포넌트 중에 character controller를 가져온다
+        m_characterController = GetComponent<CharacterController>(); //나의 컴포넌트 중에 character controller를 가져온다
     }
 
     void Update()
     {
-        switch(m_statenum)
-        {
-            case 0:
-                ChangeState(State.Idle);
-                break;
-            case 1:
-                ChangeState(State.Back);
-                break;
-            case 2:
-                ChangeState(State.Run);
-                break;
-            case 3:
-                ChangeState(State.Left);
-                break;
-            case 4:
-                ChangeState(State.Right);
-                break;
-            case 5:
-                ChangeState(State.Jump);
-                break;
-
-        }
+        
     }
 
     void ChangeState(State state)
@@ -87,13 +66,28 @@ public class CharacterWithController : MonoBehaviour
         transform.eulerAngles = angle;
     }
 
-    public void Move(Vector3 velocity)
+    public void Move(Vector3 localDir)
     {
-        transform.Translate(velocity, Space.World);
+        ChangeState(State.Run);
+        SetRunAnimProperty(localDir.x, localDir.z);
+
+        localDir = transform.TransformDirection(localDir);
+
+        m_characterController.Move(localDir.normalized * m_speed * Time.deltaTime);
+        Debug.Log("MoveDir : " + localDir);
+        //
+        //m_character.GetComponent<CharacterController>().Move(dir * m_speed * Time.deltaTime);
     }
 
-    public void SetState(int statenum)
+    public void MoveEnd()
     {
-        m_statenum = statenum;
+        ChangeState(State.Idle);
+        SetRunAnimProperty(0f, 0f);
+    }
+
+    void SetRunAnimProperty(float horizontal, float vertical)
+    {
+        m_animator.SetFloat("Horizontal", horizontal);
+        m_animator.SetFloat("Vertical", vertical);
     }
 }

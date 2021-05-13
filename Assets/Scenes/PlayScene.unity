@@ -741,10 +741,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cameraRotate: {fileID: 963194231}
   m_character: {fileID: 1215302321}
-  m_speed: 7
-  gravity: -10
-  jumpPower: 4
-  maxJumpCount: 2
 --- !u!4 &749428131
 Transform:
   m_ObjectHideFlags: 0
@@ -1329,7 +1325,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7ef42a855bf2b6549be541ef247d3cb9, type: 2}
+      objectReference: {fileID: 9100000, guid: a57b9567ebe1a7e4c82712746a8eea65, type: 2}
     - target: {fileID: 5866666021909216657, guid: ec1109020a11bc441b9107868aa130e9,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -1395,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_state: 0
+  m_speed: 6
 --- !u!1001 &1257037527
 PrefabInstance:
   m_ObjectHideFlags: 0
