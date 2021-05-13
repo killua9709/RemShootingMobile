@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CharacterWithController : MonoBehaviour
 {
+    //애니메이션
     readonly int c_animHashKeyState = Animator.StringToHash("State");
     readonly int c_animHashKeyDie = Animator.StringToHash("Die");
     [SerializeField] State m_state = State.Idle;
     Animator m_animator;
 
+    //행동, 물리
+    int m_jumpcount = 2;    //몇 단 점프 가능한지
+    float m_yVelocity;      //최종적으로 플레이어의 y축에 가하는 힘
+    [SerializeField] float m_gravity;   //중력
     [SerializeField]float m_speed = 5f;
 
     //[Header(("State"))
@@ -32,7 +37,11 @@ public class CharacterWithController : MonoBehaviour
 
     void Update()
     {
-        
+        if (m_characterController.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
+        {
+            m_jumpcount = 0; // 점프카운트를 0으로
+            m_yVelocity = 0; //중력을 0으로   
+        }
     }
 
     void ChangeState(State state)
@@ -74,8 +83,6 @@ public class CharacterWithController : MonoBehaviour
         localDir = transform.TransformDirection(localDir);
 
         m_characterController.Move(localDir.normalized * m_speed * Time.deltaTime);
-        Debug.Log("MoveDir : " + localDir);
-        //
         //m_character.GetComponent<CharacterController>().Move(dir * m_speed * Time.deltaTime);
     }
 
@@ -85,8 +92,8 @@ public class CharacterWithController : MonoBehaviour
         SetRunAnimProperty(0f, 0f);
     }
 
-    void SetRunAnimProperty(float horizontal, float vertical)
-    {
+    void SetRunAnimProperty(float horizontal, float vertical) // 입력받은 값에따라 애니메이션이 블랜드 되는데 너무 확확 바껴서 가속으로  
+    {                                                         // 바꾸려고 함..
         m_animator.SetFloat("Horizontal", horizontal);
         m_animator.SetFloat("Vertical", vertical);
     }

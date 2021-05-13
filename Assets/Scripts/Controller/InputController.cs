@@ -41,51 +41,13 @@ public class InputController : MonoBehaviour
 
         if(dir != Vector3.zero)
         {
-            //dir.Normalize();//정규화
-            //dir = Camera.main.transform.TransformDirection(dir); //내가 바라보는 방향으로 (카메라의 방향으로)이동하고 싶다
-            //dir.y = 0;
-            
             m_character.Move(dir.normalized);
         }
         else
         {
             m_character.MoveEnd();
         }
-
         
-
-        //if (dir.y == 0)
-        //{
-        //    if (horizontal == 0)
-        //    {
-        //        if (vertical < 0)
-        //            m_character.SetState(1);
-        //        else if (vertical > 0)
-        //            m_character.SetState(2);
-        //        else m_character.SetState(0);
-        //    }
-        //    else if (vertical == 0)
-        //    {
-        //        if (horizontal < 0)
-        //            m_character.SetState(3);
-        //        else if (horizontal > 0)
-        //            m_character.SetState(4);
-        //    }
-        //    else if (horizontal != 0 && vertical != 0)
-        //    {
-        //        if (vertical < 0)
-        //            m_character.SetState(1);
-        //        else if (vertical > 0)
-        //            m_character.SetState(2);
-        //    }
-        //}
-        //
-        //if ( cc.collisionFlags== CollisionFlags.Below) //만약 player가 바닥에 닿는다면
-        //{
-        //    jumpCount = 0; // 점프카운트를 0으로
-        //    yVelocity = 0; //중력을 0으로   
-        //}
-        //
         //if (Input.GetButtonDown("Jump")) // 만약 점프키(space bar)누르면
         //{
         //    if (jumpCount == 0 && cc.collisionFlags != CollisionFlags.Below) //만약 점프키카운트가 0인 동시에 player가 바닥에 닿지 않는다면
