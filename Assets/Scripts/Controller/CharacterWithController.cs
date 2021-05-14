@@ -11,12 +11,14 @@ public class CharacterWithController : MonoBehaviour
     Animator m_animator;
 
     //행동, 물리
-    int m_jumpcount = 2;    //몇 단 점프 가능한지
-    float m_yVelocity;      //최종적으로 플레이어의 y축에 가하는 힘
-    [SerializeField] float m_gravity;   //중력
-    [SerializeField]float m_speed = 5f;
+    public int m_jumpcount = 0;
+    int m_maxJumpcount = 2;//몇 단 점프 가능한지
+    public float m_jumpPower = 10; //점프파워
+    public float m_gravity;   //중력
+    [SerializeField] float m_speed = 5f;
 
-    //[Header(("State"))
+    bool m_jumpinspector = false;
+    public bool Jumpinspector { set { m_jumpinspector = value; } } //move 함수에서 같이 처리하려고함 불값을 통해서
 
     enum State : int
     {
@@ -28,20 +30,11 @@ public class CharacterWithController : MonoBehaviour
         Jump = 5
     }
 
-    CharacterController m_characterController;//character controller이용
+    public CharacterController m_characterController;//character controller이용
     void Start()
     {
         m_animator = GetComponent<Animator>();
         m_characterController = GetComponent<CharacterController>(); //나의 컴포넌트 중에 character controller를 가져온다
-    }
-
-    void Update()
-    {
-        if (m_characterController.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
-        {
-            m_jumpcount = 0; // 점프카운트를 0으로
-            m_yVelocity = 0; //중력을 0으로   
-        }
     }
 
     void ChangeState(State state)
@@ -83,7 +76,6 @@ public class CharacterWithController : MonoBehaviour
         localDir = transform.TransformDirection(localDir);
 
         m_characterController.Move(localDir.normalized * m_speed * Time.deltaTime);
-        //m_character.GetComponent<CharacterController>().Move(dir * m_speed * Time.deltaTime);
     }
 
     public void MoveEnd()

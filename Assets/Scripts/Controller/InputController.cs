@@ -6,6 +6,7 @@ public class InputController : MonoBehaviour
 {
     [SerializeField]CameraRotateWithController m_cameraRotate;
     [SerializeField] CharacterWithController m_character;
+    float yVelocity = 0;
 
     void Start()
     {
@@ -38,8 +39,10 @@ public class InputController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
 
         Vector3 dir = new Vector3(horizontal, 0, vertical); //움직이는 것이 y축이 아니라 x,z축만을 이동한다.
+        
+        yVelocity += m_character.m_gravity * Time.deltaTime;
 
-        if(dir != Vector3.zero)
+        if (dir != Vector3.zero)
         {
             m_character.Move(dir.normalized);
         }
@@ -47,22 +50,20 @@ public class InputController : MonoBehaviour
         {
             m_character.MoveEnd();
         }
+
+        if (m_character.m_characterController.collisionFlags == CollisionFlags.Below) //만약 player가 바닥에 닿는다면
+        {
+            m_character.m_jumpcount = 0; // 점프카운트를 0으로
+            yVelocity = 0; 
+        }
+
+        if (Input.GetButtonDown("Jump") && m_character.m_jumpcount<2)    //점프키를 누르고 점프카운트가 있다면
+        {
+            yVelocity = m_character.m_jumpPower;
+            m_character.m_jumpcount++;
+        }
         
-        //if (Input.GetButtonDown("Jump")) // 만약 점프키(space bar)누르면
-        //{
-        //    if (jumpCount == 0 && cc.collisionFlags != CollisionFlags.Below) //만약 점프키카운트가 0인 동시에 player가 바닥에 닿지 않는다면
-        //    {
-        //        return;
-        //    }
-        //    else if (jumpCount < maxJumpCount) //그렇지 않고 만약 점프카운트가 최대횟수보다 작다면
-        //    {
-        //        m_character.SetState(5);
-        //    }
-        //}   
-        //
-        //yVelocity += gravity * Time.deltaTime; // v=v0+at
-        //dir.y = yVelocity;//y방향이 없었는데, y에 중력을 적용함
-        //                  // transform.position += dir * playerMovespeed * Time.deltaTime;//p=p0*vt
+        m_character.m_characterController.Move(new Vector3(0,yVelocity,0));
     }
 
     void UpdateViewpoint()
