@@ -33,7 +33,7 @@ public class CameraRotateWithController : MonoBehaviour
         transform.position = m_target.position + rotation * new Vector3(0f, 0f, -m_distance); //쿼터니언과 벡터를 곱하면 회전한 방향벡터를 얻을 수 있다.
         transform.LookAt(m_target.position);                                                  //포지션 이동 후 바라보는 회전을 타겟의 포지션에 맞춘다.
 
-        m_target2.position = m_target.position + rotation * new Vector3(0f, 0f, +m_distance);
+        m_target2.position = m_target.position + rotation * new Vector3(0f, 0f, +m_distance*2);
     }
 
     public void MoveViewpoint()
