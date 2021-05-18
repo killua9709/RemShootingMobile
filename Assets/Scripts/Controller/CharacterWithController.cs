@@ -8,7 +8,7 @@ public class CharacterWithController : MonoBehaviour
     readonly int c_animHashKeyState = Animator.StringToHash("State");
     readonly int c_animHashKeyDie = Animator.StringToHash("Die");
     [SerializeField] State m_state = State.Idle;
-    Animator m_animator;
+    private Animator m_animator;
 
     //행동, 물리
     public int m_jumpcount = 0;

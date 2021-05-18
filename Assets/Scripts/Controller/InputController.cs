@@ -16,7 +16,7 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        UpdateViewpoint();
+        //UpdateViewpoint();
         UpdateRotate();
         UpdateTranslate();
         m_cameraRotate.UpdateCameraByProperty();

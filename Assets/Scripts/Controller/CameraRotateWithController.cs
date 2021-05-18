@@ -29,11 +29,24 @@ public class CameraRotateWithController : MonoBehaviour
 
     public void UpdateCameraByProperty()
     {
-        Quaternion rotation = Quaternion.Euler(m_pitch, m_yaw, 0f);
-        transform.position = m_target.position + rotation * new Vector3(0f, 0f, -m_distance); //쿼터니언과 벡터를 곱하면 회전한 방향벡터를 얻을 수 있다.
-        transform.LookAt(m_target.position);                                                  //포지션 이동 후 바라보는 회전을 타겟의 포지션에 맞춘다.
+        if (Input.GetMouseButton(1))
+        {
+            Quaternion rotation = Quaternion.Euler(m_pitch, m_yaw, 0f);
+            
+            transform.position = m_target.position + rotation * new Vector3(0f, 0f, -m_distance); 
+            transform.LookAt(m_target.position);                                                  
+            m_target2.position = m_Inittarget.position + rotation * new Vector3(0f, 0f, +m_distance * 1.8f);
+        }
+        else
+        {
+            Quaternion rotation = Quaternion.Euler(m_pitch, m_yaw, 0f);
 
-        m_target2.position = m_target.position + rotation * new Vector3(0f, 0f, +m_distance*2);
+            transform.position = m_target.position + rotation * new Vector3(0f, 0f, -m_distance); //쿼터니언과 벡터를 곱하면 회전한 방향벡터를 얻을 수 있다.
+            transform.LookAt(m_target.position);                                                  //포지션 이동 후 바라보는 회전을 타겟의 포지션에 맞춘다.
+            m_target2.position = m_Inittarget.position + rotation * new Vector3(0f, 0f, +m_distance * 1.8f);
+        }
+
+        
     }
 
     public void MoveViewpoint()
