@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField]CameraRotateWithController m_cameraRotate;
+    [SerializeField] CameraRotateWithController m_cameraRotate;
     [SerializeField] CharacterWithController m_character;
+    [SerializeField] GunRotate m_gun;
     float yVelocity = 0;
 
     void Start()
@@ -16,12 +17,26 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        //UpdateViewpoint();
         UpdateRotate();
         UpdateTranslate();
+        //UpdateViewpoint();
         m_cameraRotate.UpdateCameraByProperty();
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            m_cameraRotate.StartAiming(0.3f);
+        }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            m_cameraRotate.ToDefault(0.3f);
+        }
        
     }
+    private void LateUpdate()
+    {
+        UpdateViewpoint();
+    }
+
 
     void UpdateRotate() // 카메라와 플레이어에 입력값에 따른 회전값
     {
@@ -64,18 +79,24 @@ public class InputController : MonoBehaviour
         }
         
         m_character.m_characterController.Move(new Vector3(0,yVelocity,0));
+
+        if (vertical < 0)
+        {
+            GameObject.Find("ReichsrevolverM1879").transform.Rotate(new Vector3(1000f, 0, 0) * Time.deltaTime);
+        }
+        else GameObject.Find("ReichsrevolverM1879").transform.localRotation = Quaternion.Euler(0, 90, 90);
     }
 
     void UpdateViewpoint()
     {
-        if(Input.GetMouseButton(1))
-        {
-            m_cameraRotate.MoveViewpoint();
-        }
-
-        if(Input.GetMouseButtonUp(1))
-        {
-            m_cameraRotate.ReturnViewpoint();
-        }
+        //if(Input.GetMouseButton(1))
+        //{
+        //    m_cameraRotate.MoveViewpoint();
+        //}
+        //
+        //if(Input.GetMouseButtonUp(1))
+        //{
+        //    m_cameraRotate.ReturnViewpoint();
+        //}
     }
 }

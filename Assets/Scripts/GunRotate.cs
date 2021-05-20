@@ -6,6 +6,6 @@ public class GunRotate : MonoBehaviour
 {
     public void Gunrotate()
     {
-        transform.Rotate(new Vector3(0, 0, 1));
+        transform.Rotate(new Vector3(1000, 0, 0) * Time.deltaTime );
     }
 }

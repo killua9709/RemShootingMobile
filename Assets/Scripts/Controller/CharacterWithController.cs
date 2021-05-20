@@ -12,7 +12,6 @@ public class CharacterWithController : MonoBehaviour
 
     //행동, 물리
     public int m_jumpcount = 0;
-    int m_maxJumpcount = 2;//몇 단 점프 가능한지
     public float m_jumpPower = 10; //점프파워
     public float m_gravity;   //중력
     [SerializeField] float m_speed = 5f;

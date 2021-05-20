@@ -21,12 +21,10 @@ public class CharacterZoomAnm : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1)) // 우클릭 눌리는 동안
         {
-            Debug.Log("바라보기");
             StartCoroutine(aimModeOn());
         }
         else if(Input.GetMouseButtonUp(1)) // 우킬릭을 때면
         {
-            Debug.Log("해제");
             StartCoroutine(aimModeOff());
         }
         if(aimMode == true) //에임모드가 활성화 되면
@@ -38,7 +36,6 @@ public class CharacterZoomAnm : MonoBehaviour
 
     IEnumerator aimModeOn() // 에임모드가 켜지면 지정대기시간 이후 aimmode = true
     {
-        Debug.Log("조준");
         yield return new WaitForSeconds(0.07f);
         aimMode = true;
     }
